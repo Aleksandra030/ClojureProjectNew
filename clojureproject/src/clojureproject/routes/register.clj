@@ -9,6 +9,7 @@
 
 (defn register []
   (layout/common [:h1 "Hello World!"]
+                [:div.reg
                  (form-to [:post "/save"]
                           [:div.registerform
                           [:div 
@@ -25,7 +26,7 @@
                           [:div
                            (submit-button "Save")]]
                           )
-           ))
+           ]))
 
 (defn do-register 
   [name lastName mail username password]

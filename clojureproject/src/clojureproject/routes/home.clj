@@ -9,7 +9,7 @@
 (defn home []
   (layout/common [:h1 "Hello World!"]
                  (form-to [:post "/login"]
-                          [:div.loginform
+                          [:div.loginform 
                           [:div 
                            (label {:class "loginlabel"} :username "Username: ")  (text-field :username )]
                           [:div
