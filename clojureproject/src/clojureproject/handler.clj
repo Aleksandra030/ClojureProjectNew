@@ -7,7 +7,9 @@
             [compojure.route :as route]
             [clojureproject.routes.home :refer [home-routes]]
             [clojureproject.routes.register :refer [register-routes]]
-           [ clojureproject.routes.main :refer [main-routes]]
+            [clojureproject.routes.main :refer [main-routes]]
+            [clojureproject.routes.add :refer [add-routes]]
+       
              [noir.session :as session]))
 
 (defn init []
@@ -21,7 +23,7 @@
   (route/not-found "Not Found"))
 
 (def app
-  (-> (routes home-routes register-routes  main-routes app-routes)
+  (-> (routes home-routes register-routes  main-routes add-routes app-routes)
       (handler/site)
       (wrap-base-url)
     (session/wrap-noir-flash)

@@ -10,6 +10,7 @@
 (defn register []
   (layout/common [:h1 "Hello World!"]
                 [:div.reg
+              
                  (form-to [:post "/save"]
                           [:div.registerform
                           [:div 
@@ -28,7 +29,7 @@
                           )
            ]))
 
-(defn do-register 
+(defn register-action
   [name lastName mail username password]
    (do
        (insert-user name lastName mail username password)
@@ -37,5 +38,5 @@
                   
 (defroutes register-routes
   (GET "/register" [] (register))
-  (POST "/save" [name lastName mail username password] (do-register name lastName mail username password))
+  (POST "/save" [name lastName mail username password] (register-action name lastName mail username password))
   )

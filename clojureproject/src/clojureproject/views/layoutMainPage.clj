@@ -2,18 +2,46 @@
   (:require [noir.session :as session])
   (:require [hiccup.page :refer [html5 include-css]]))
 
-(defn common [& body]
+
+(defn user-menu
+  "Generates the menu for all pages when the admin is not logged in."
+  []
+  [:header
+   [:div.header_inner
+    [:ul#nav 
+	   [:li 
+	    [:a {:href "/"} "Home"]]
+     [:li 
+	    [:a {:href "/aboutus"} "Plan to learn"]]]
+    ]
+   ])
+
+
+(defn admin-menu
+  "Generates the menu for all pages when the admin is logged in."
+  []
+  [:header
+   [:div.header_inner
+    [:ul#nav 
+	   [:li 
+	    [:a {:href "/"} "Home"]]
+     [:li 
+      [:a {:href "/add"} "Add"]]
+     [:li 
+	    [:a {:href "/users"} "Users"]]]
+    [:div.top_header
+     [:a {:href "/logout"} "Logout"]]
+    ]
+   ])
+
+
+(defn common [& content]
   (html5
     [:head
      [:title "Welcome to clojureproject"]
      (include-css "/css/screen.css")]
-    [:body body
-       (let [admin (session/get :admin), user (session/get :user)] 
-         (if-not admin (if-not user (not-logged-in-menu) (user-logged-in-menu)) (logged-in-menu)))
-       
-         [:div#content
-          [:div.content_inner
-           (init-slider)
-	          content
-           ]
-          ]]))
+    [:body 
+     (let [admin (session/get :admin), user (session/get :user)] 
+         (if user (user-menu) (admin-menu)))
+          [:div.main content]
+       ]))

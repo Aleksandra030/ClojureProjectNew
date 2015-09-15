@@ -1,6 +1,6 @@
 (ns clojureproject.routes.main
     (:require [compojure.core :refer :all]
-            [clojureproject.views.layout :as layout]
+            [clojureproject.views.layoutMainPage :as layout]
               [ring.util.response :as response]
               [noir.session :as session])
   (:use  [hiccup.form]

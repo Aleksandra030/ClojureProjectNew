@@ -27,8 +27,19 @@
                    :mail mail
                    :username username
                    :password password}))
-
+(defn insert-item
+    [item coefficient type]
+     (insert-entity :items 
+                  {:item item
+                   :coefficient coefficient
+                   :type type}))
+    
+    
 (defn get-user-by-username [username]
   "Find user by username."  
   (fetch-one :users :where {:username username}))
+
+(defn get-admin-by-username [username]
+  "Find admin by username."  
+  (fetch-one :admin :where {:username username}))
 

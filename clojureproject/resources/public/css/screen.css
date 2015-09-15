@@ -7,4 +7,12 @@ body {
 h1 {
     text-align: center;
 }
+.reg {
+	background: red;
+	position: center;
+	  text-align:center;
+}
+.reg2{
+	position: center;
+}
 
