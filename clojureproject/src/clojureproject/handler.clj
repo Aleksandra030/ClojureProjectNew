@@ -9,6 +9,7 @@
             [clojureproject.routes.register :refer [register-routes]]
             [clojureproject.routes.main :refer [main-routes]]
             [clojureproject.routes.add :refer [add-routes]]
+            [clojureproject.routes.questions :refer [question-routes]]
        
              [noir.session :as session]))
 
@@ -23,7 +24,7 @@
   (route/not-found "Not Found"))
 
 (def app
-  (-> (routes home-routes register-routes  main-routes add-routes app-routes)
+  (-> (routes home-routes register-routes  main-routes add-routes question-routes app-routes)
       (handler/site)
       (wrap-base-url)
     (session/wrap-noir-flash)

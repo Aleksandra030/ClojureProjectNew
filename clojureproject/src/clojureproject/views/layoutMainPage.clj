@@ -4,13 +4,13 @@
 
 
 (defn user-menu
-  "Generates the menu for all pages when the admin is not logged in."
+  "Generates the menu for all pages when the user is not logged in."
   []
   [:header
    [:div.header_inner
     [:ul#nav 
 	   [:li 
-	    [:a {:href "/"} "Home"]]
+	    [:a {:href "/test"} "Home"]]
      [:li 
 	    [:a {:href "/aboutus"} "Plan to learn"]]]
     ]
