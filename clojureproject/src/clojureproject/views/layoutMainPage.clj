@@ -12,7 +12,9 @@
 	   [:li 
 	    [:a {:href "/test"} "Home"]]
      [:li 
-	    [:a {:href "/aboutus"} "Plan to learn"]]]
+	    [:a {:href "/aboutus"} "Plan to learn"]]
+      [:div.top_header
+     [:a {:href "/"} "Logout"]]]
     ]
    ])
 
@@ -30,7 +32,7 @@
      [:li 
 	    [:a {:href "/users"} "Users"]]]
     [:div.top_header
-     [:a {:href "/logout"} "Logout"]]
+     [:a {:href "/"} "Logout"]]
     ]
    ])
 

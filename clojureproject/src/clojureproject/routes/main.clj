@@ -5,7 +5,7 @@
               [noir.session :as session])
   (:use  [hiccup.form]
          [hiccup.element :only (link-to)]
-         [db.database :only [get-all-item delete-item]]))
+         [db.database :only [get-all-item delete-item get-item-by-id]]))
 
 
 
@@ -17,7 +17,7 @@
            )
   )
 (defn make-button-user [id]
-    (form-to [:delete  "/calculate"]
+    (form-to [:post  "/calculate"]
            [:div
             (hidden-field :id id)
            (submit-button "Calculate")]
@@ -55,8 +55,39 @@
       [:h2 "Item list"]
       [:br][:br]
       (show-list))
-          ))
-
+          [:p (session/get :message)]))
+(defn plan-to-learn
+  [id]
+  (let [item (get-item-by-id id)
+        coefficient (:coefficient item)
+        itemType (:type item)
+        user (session/get :user)
+        userType (:type user)]
+    (session/put! :message "")
+    (if (= itemType "management") (let [ hours 
+                                        ( cond
+                                           (=  userType "low manager" ) (* (Integer/valueOf coefficient) 1)
+                                           (=  userType  "high manager") (* (Integer/valueOf coefficient) 0.5)
+                                           (=  userType  "low programer") (* (Integer/valueOf coefficient) 1.5)
+                                           :else (* (Integer/valueOf coefficient) 2))]
+                                    (println "prvi")
+                                     (session/put! :message hours)
+                                     (response/redirect "/main")
+                                   ; (println hours)
+                                   )(let [ hours1 
+                                         ( cond
+                                           (=  userType "low manager" ) (* (Integer/valueOf coefficient) 2)
+                                           (=  userType  "high manager") (* (Integer/valueOf coefficient) 1.5)
+                                           (=  userType  "low programer") (* (Integer/valueOf coefficient) 1)
+                                           :else (* (Integer/valueOf coefficient) 1))]
+                                          (println "drugi")
+                                           (session/put! :message hours1)
+                                           (response/redirect "/main")
+                                         ; (println hours1)
+                                      ))
+    
+    )
+  )
  (defn delete-item-form-table
   [id]
    (do
@@ -68,5 +99,5 @@
 (defroutes main-routes
   (GET "/main" [] (main))
    (DELETE "/delete-item" [id] (delete-item-form-table id))
-   (POST "/calculate" [id] (delete-item-form-table id))
+   (POST "/calculate" [id] (plan-to-learn id))
   )

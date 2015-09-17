@@ -21,12 +21,14 @@
 (defn insert-user
   [name lastName mail username password]
   "Insert user into database." 
+  (println "dodao")
   (insert-entity :users 
                   {:name name
                    :lastName lastName
                    :mail mail
                    :username username
-                   :password password}))
+                   :password password
+                   :type ""}))
 (defn insert-item
     [item coefficient type]
      (insert-entity :items 
@@ -43,6 +45,10 @@
   "Find admin by username."  
   (fetch-one :admin :where {:username username}))
 
+(defn get-item-by-id [id]
+  "Find item by id."  
+  (fetch-one :items :where {:_id (Integer/valueOf id)}))
+
 (defn get-all-item []
   (fetch :items))
 
@@ -50,3 +56,16 @@
   "Delete items from the database."
   (println id)
   (destroy! :items {:_id (Integer/valueOf id)}))
+
+(defn update-type-on-register
+  [type]
+  "Update register user"
+  (let [register-user  (session/get :register-user)
+        id (:_id register-user)
+        name (:name register-user)
+        lastName (:lastName register-user)
+        mail (:mail register-user)
+        password (:password register-user)
+        username (:username register-user)]
+    
+   (fetch-and-modify :users {:_id id} {:_id id :name name :lastName lastName :mail mail :password password :username username :type type})))

@@ -6,21 +6,28 @@
   (:use  [hiccup.form :only [form-to label text-field password-field submit-button]]
            [db.database :only [get-user-by-username get-admin-by-username]]))
 
+
+(defn clearSession []
+  (session/remove! :admin)
+  (session/remove! :user)
+  (session/remove! :register-user)
+  )
 (defn home []
+  (clearSession)
   (layout/common [:h1 "Hello World!"]
-                 (form-to [:post "/login"]
+      (form-to [:post "/login"]
                           [:div.loginform 
                           [:div 
-                           (label {:class "loginlabel"} :username "Username: ")  (text-field :username )]
-                          [:div
-                           (label {:class "loginlabel"} :password "Password: ") (password-field :password)]
-                          [:div
-                           (submit-button "Log In")]]
-                          )
-                (form-to [:get "/register"]
-                         [:div.loginform
-                          [:div
-                           (submit-button "Register")]]
+                (label {:class "loginlabel"} :username "Username: ")  (text-field :username )]
+               [:div
+                (label {:class "loginlabel"} :password "Password: ") (password-field :password)]
+               [:div
+                (submit-button "Log In")]]
+               )
+     (form-to [:get "/register"]
+              [:div.loginform
+               [:div
+                (submit-button "Register")]]
               )))
 
 

@@ -5,7 +5,7 @@
               [noir.session :as session])
   (:use  [hiccup.form]
          [hiccup.element :only (link-to)]
-          [db.database :only [insert-user]]))
+          [db.database :only [insert-user get-user-by-username]]))
 
 (defn register []
   (layout/common [:h1 "Hello World!"]
@@ -33,8 +33,12 @@
   [name lastName mail username password]
    (do
        (insert-user name lastName mail username password)
-        (response/redirect "/home"))
-                    )
+       (let [register-user (get-user-by-username username)]
+         (do (session/put! :register-user register-user)
+              (response/redirect "/test")
+              
+         ))
+                    ))
                   
 (defroutes register-routes
   (GET "/register" [] (register))
