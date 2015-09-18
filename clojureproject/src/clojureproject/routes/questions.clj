@@ -25,7 +25,7 @@
                             "I can solve complex mathematical formulas and understand their usage in physics and chemistry with ease."
                          [:div
                            (drop-down :answer5 [:1 :2 :3 :4])]
-                            "I find company meetings interesting"
+                            "I find company meetings interesting "
                          [:div
                            (drop-down :answer6 [:1 :2 :3 :4])]
                            [:div
