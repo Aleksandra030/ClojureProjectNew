@@ -15,23 +15,20 @@ lein ring server
 #Libraries used
 
 Leiningen
-
 Version - 2.0 Leiningen is the easiest way to use Clojure. With a focus on project automation and declarative configuration, it gets out of your way and lets you focus on your code. http://leiningen.org/
 
 Clojure
-
 Clojure provides easy access to the Java frameworks, with optional type hints and type inference, to ensure that calls to Java can avoid reflection. http://clojure.org/
 ``` 
 [org.clojure/clojure "1.6.0"]
 ``` 
 Compojure 1.3.1
+A concise routing library for Ring - https://github.com/weavejester/compojure
 ``` 
 [compojure "1.3.1"]
 ``` 
-A concise routing library for Ring - https://github.com/weavejester/compojure
 
-hiccup 1.0.5
-
+Hiccup 1.0.5
 A fast library for rendering HTML in Clojure - https://github.com/weavejester/hiccup
 ``` 
  [hiccup "1.0.5"]
