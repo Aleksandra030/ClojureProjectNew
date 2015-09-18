@@ -1,5 +1,7 @@
-ProjectName
+"Plan to learn"
 ===========
+
+Application helps students by giving them information how many hours per week approximately they need to study to pass exams with highest grades. During the Sign up process, user takes a short test. Based on the result, app determines whether the user has a more manager or a more programmer studying profile. Additionally, admin role can add exams, delete them, and can access all exams' information. When adding new exam, app administrator enters various coefficients for determining different student profiles e.g. low manager, high manager, low programmer and high programmer, and different exam areas e.g. programming or management.
 
 
 #Prerequisites
