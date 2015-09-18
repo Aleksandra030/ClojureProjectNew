@@ -12,12 +12,11 @@
 (set-connection! conn)
 
 ;; ----- Helper functions -----
-;; ----- Find user by username -----
-(defn get-user-by-username [username]  
-  (fetch-one :users :where {:username username}))
+
 
 ;; ----- Find admin by username -----
 (defn get-admin-by-username [username] 
+  (println username)
   (fetch-one :admin :where {:username username}))
 
 ;; ----- Find item by id -----
@@ -53,6 +52,10 @@
                   {:item item
                    :coefficient coefficient
                    :type type}))
+
+;; ----- Find user by username -----
+(defn get-user-by-username [username]  
+  (fetch-one :users :where {:username username}))
 
 (defn get-all-item []
   (fetch :items))

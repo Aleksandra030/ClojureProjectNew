@@ -8,10 +8,6 @@
   [:header
    [:div.header_inner
     [:ul#nav 
-	   [:li 
-	    [:a {:href "/test"} "Home"]]
-     [:li 
-	    [:a {:href "/aboutus"} "Plan to learn"]]
       [:div.top_header
      [:a {:href "/"} "Logout"]]]
     ]
@@ -23,12 +19,8 @@
   [:header
    [:div.header_inner
     [:ul#nav 
-	   [:li 
-	    [:a {:href "/"} "Home"]]
      [:li 
-      [:a {:href "/add"} "Add"]]
-     [:li 
-	    [:a {:href "/users"} "Users"]]]
+      [:a {:href "/add"} "Add"]]]
     [:div.top_header
      [:a {:href "/"} "Logout"]]
     ]

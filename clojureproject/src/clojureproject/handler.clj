@@ -10,10 +10,23 @@
             [clojureproject.routes.main :refer [main-routes]]
             [clojureproject.routes.add :refer [add-routes]]
             [clojureproject.routes.questions :refer [question-routes]]
-            [noir.session :as session]))
+            [db.database :only [get-user-by-username]]
+            [noir.session :as session])
+    (:use  [db.database :only [get-admin-by-username insert-user insert-item]]))
 
 (defn init []
-  (println "clojureproject is starting"))
+  (println "clojureproject is starting")
+  (let [admin (get-admin-by-username "admin")] 
+      (if (= admin nil)
+        (do 
+              (insert-user "admin" "admin" "admin@admin" "admin" "admin")
+              (insert-item "Math" "5" "programming")
+              (insert-item "English" "3" "management")
+              ( insert-item "Economy" "5" "management")
+              )
+        (println "Admin not exist!"))
+    )
+  )
 
 (defn destroy []
   (println "clojureproject is shutting down"))
