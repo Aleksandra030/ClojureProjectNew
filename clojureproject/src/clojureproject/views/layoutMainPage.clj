@@ -4,7 +4,6 @@
 
 
 (defn user-menu
-  "Generates the menu for all pages when the user is not logged in."
   []
   [:header
    [:div.header_inner
@@ -20,7 +19,6 @@
 
 
 (defn admin-menu
-  "Generates the menu for all pages when the admin is logged in."
   []
   [:header
    [:div.header_inner

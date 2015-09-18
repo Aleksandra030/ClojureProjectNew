@@ -12,24 +12,23 @@
   (session/remove! :user)
   (session/remove! :register-user)
   )
+
 (defn home []
   (clearSession)
-  (layout/common [:h1 "Hello World!"]
+  (layout/common [:h1 "Welcome!"]
       (form-to [:post "/login"]
                           [:div.loginform 
-                          [:div 
-                (label {:class "loginlabel"} :username "Username: ")  (text-field :username )]
-               [:div
-                (label {:class "loginlabel"} :password "Password: ") (password-field :password)]
-               [:div
-                (submit-button "Log In")]]
-               )
-     (form-to [:get "/register"]
-              [:div.loginform
-               [:div
-                (submit-button "Register")]]
-              )))
-
+                           [:div 
+                            (label {:class "loginlabel"} :username "Username: ")  (text-field :username )]
+                           [:div
+                            (label {:class "loginlabel"} :password "Password: ") (password-field :password)]
+                           [:div
+                            (submit-button "Log In")]]
+                          )
+      (form-to [:get "/register"]
+                         [:div.loginform
+                            [:div
+                             (submit-button "Register")]] )))
 
 (defn- validate-user
   "Check if the user with given username and passwored is valid."
@@ -51,19 +50,15 @@
 (defn do-login
   "If username and password are correct, put the information into session that the admin is logged in."
   [username password]
-    (let [
-      user (get-user-by-username username)
-      admin (get-admin-by-username username)
-      error-user (validate-user user password)
-      error-admin (validate-admin admin password)
-      ]
+  (let [user (get-user-by-username username)
+       admin (get-admin-by-username username)
+       error-user (validate-user user password)
+       error-admin (validate-admin admin password)]
     (cond
-       (= true error-user) (do (session/put! :user user)(response/redirect "/main"))
-       (= true error-admin) (do (session/put! :admin admin)(response/redirect "/main"))
+      (= true error-user) (do (session/put! :user user)(response/redirect "/main"))
+      (= true error-admin) (do (session/put! :admin admin)(response/redirect "/main"))
       :else (do (session/flash-put! :login-error "User with given username and password does not exist.") (response/redirect "/")))))
-
 
 (defroutes home-routes
   (GET "/" [] (home))
-  (POST "/login" [username password] (do-login username password))
-  )
+  (POST "/login" [username password] (do-login username password)))

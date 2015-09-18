@@ -10,8 +10,7 @@
             [clojureproject.routes.main :refer [main-routes]]
             [clojureproject.routes.add :refer [add-routes]]
             [clojureproject.routes.questions :refer [question-routes]]
-       
-             [noir.session :as session]))
+            [noir.session :as session]))
 
 (defn init []
   (println "clojureproject is starting"))
@@ -27,5 +26,5 @@
   (-> (routes home-routes register-routes  main-routes add-routes question-routes app-routes)
       (handler/site)
       (wrap-base-url)
-    (session/wrap-noir-flash)
-    (session/wrap-noir-session)))
+      (session/wrap-noir-flash)
+      (session/wrap-noir-session)))

@@ -10,58 +10,43 @@
   (layout/common [:h1 "Questions!"]
                 (form-to [:post "/getAnswers"]
                          [:div.reg
-                          "Da li dosta svog vremena provodite na racunaru?"
+                          "I tend to spend a lot of time in front of a computer."
                          [:div
                            (drop-down :answer1 [:1 :2 :3 :4])]
-                          "Direktan rad sa ljudima, koji podrazumeavju pruzanje neke ugostiteljske usluge mi deluje zanimljivo i ispunjujuce??"
+                          "Working with people, which represents giving catering services appears interesting and fulfilling to me."
                          [:div
                            (drop-down :answer2 [:1 :2 :3 :4])]
-                            "Privlaci me primena administrativnih propisa na praspolaganje finansijskim sredstvima?"
+                            "I find it interesting to use various administrative regulations and to be in charge of financial funds."
                          [:div
                            (drop-down :answer3 [:1 :2 :3 :4])]
-                            "Vise bih volela da se bavim prakticnim i konkretnim zadacima, a ne da ucim puno teorije?"
+                            "I would rather work on pragmatic tasks and solve real life problems in practice than dealing with a lot of theory."
                          [:div
                            (drop-down :answer4 [:1 :2 :3 :4])]
-                            "Sa lakocom resavam slozene matematicke formule i razumem njihovu primenu u fizici i hemiji?"
+                            "I can solve complex mathematical formulas and understand their usage in physics and chemistry with ease."
                          [:div
                            (drop-down :answer5 [:1 :2 :3 :4])]
-                            "Koliko vas privlace sastanci?"
+                            "I find company meetings interesting"
                          [:div
                            (drop-down :answer6 [:1 :2 :3 :4])]
                            [:div
-                           (submit-button "Save item")]
-              
-  
-          ])
-             
-))
+                           (submit-button "Save item")]])))
 
 (defn setAnswers 
   [answer1 answer2 answer3 answer4 answer5 answer6]
-  (println "dosao")
   (do
- (let [sum (+ ( Integer/valueOf answer1) (Integer/valueOf answer2) (Integer/valueOf answer3) (Integer/valueOf answer4) (Integer/valueOf answer5) (Integer/valueOf answer5))
-       register-user (session/get :register-user)]
-   (println "suma")
-   (println sum)
-   (let [ register-type  ( cond
+    (let [sum (+ ( Integer/valueOf answer1) (Integer/valueOf answer2) (Integer/valueOf answer3) (Integer/valueOf answer4) (Integer/valueOf answer5) (Integer/valueOf answer5))
+          register-user (session/get :register-user)]
+      (println sum)
+      (let [ register-type  ( cond
                              (<  (Integer/valueOf sum) 7) "low manager"
                              (< (Integer/valueOf sum) 13) "high manager"
-                             (< (Integer/valueOf sum) 19) "low programer"
+                                (< (Integer/valueOf sum) 19) "low programer"
                              :else "high programer")]
-     (update-type-on-register register-type)
-     (session/put! :user register-user)
-     (session/remove! :admin)
-     )
-   
-   )
- 
-     (response/redirect "/main")
-                    )
- )
+        (update-type-on-register register-type)
+        (session/put! :user register-user)
+        (session/remove! :admin)))
+    (response/redirect "/main")))
 
 (defroutes question-routes
   (GET "/test" [] (test))
-  (POST "/getAnswers" [answer1 answer2 answer3 answer4 answer5 answer6] (setAnswers answer1 answer2 answer3 answer4 answer5 answer6))
-
-  )
+  (POST "/getAnswers" [answer1 answer2 answer3 answer4 answer5 answer6] (setAnswers answer1 answer2 answer3 answer4 answer5 answer6)))
