@@ -21,4 +21,15 @@ padding-bottom: 50px;
 .reg2{
 	text-align: center;
 }
+.addForm {
+text-align:center;
+}
+#nav li{
+display: inline;
+padding-left: 50px;
+}
+table th,
+table td{
+	padding: 10px 30px;
+}
 

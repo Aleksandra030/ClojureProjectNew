@@ -23,6 +23,7 @@
               (insert-item "Math" "5" "programming")
               (insert-item "English" "3" "management")
               ( insert-item "Economy" "5" "management")
+			  (pritnln "Start")
               )
         (println "Admin not exist!"))
     )
