@@ -12,14 +12,14 @@
             [clojureproject.routes.questions :refer [question-routes]]
             [db.database :only [get-user-by-username]]
             [noir.session :as session])
-    (:use  [db.database :only [get-admin-by-username insert-user insert-item]]))
+    (:use  [db.database :only [get-admin-by-username insert-admin insert-item]]))
 
 (defn init []
   (println "clojureproject is starting")
   (let [admin (get-admin-by-username "admin")] 
       (if (= admin nil)
         (do 
-              (insert-user "admin" "admin" "admin@admin" "admin" "admin")
+              (insert-admin "admin" "admin" "admin@admin" "admin" "admin")
               (insert-item "Math" "5" "programming")
               (insert-item "English" "3" "management")
               ( insert-item "Economy" "5" "management")

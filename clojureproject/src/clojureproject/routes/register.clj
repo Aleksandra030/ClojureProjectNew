@@ -8,21 +8,26 @@
          [db.database :only [insert-user get-user-by-username]]))
 
 (defn register []
-  (layout/common [:h1 "Hello World!"]
+  (layout/common [:h1 "Register"]
                 [:div.reg
               
                  (form-to [:post "/save"]
                           [:div.registerform
                           [:div 
                            (label {:class "registerlabel"} :username "Name: ")  (text-field :name )]
+                          [:br]
                           [:div
                            (label {:class "registerlabel"} :password "Last name: ") (text-field :lastName)]
+                         [:br]
                          [:div
                            (label {:class "registerlabel"} :password "Mail: ") (text-field :mail)]
+                          [:br]
                           [:div 
                            (label {:class "registerlabel"} :username "Username: ")  (text-field :username )]
+                          [:br]
                           [:div
                            (label {:class "registerlabel"} :password "Password: ") (password-field :password)]
+                           [:br]
                           [:div
                            (submit-button "Save")]]
                           )]))

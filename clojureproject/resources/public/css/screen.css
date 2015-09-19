@@ -1,18 +1,35 @@
 body {
     color: #555;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-size: 20px;
 }
 
 h1 {
     text-align: center;
 }
 .reg {
-	background: red;
 	position: center;
+	padding-left: 50px;
+	
+}
+.loginform {
 	text-align:center;
 }
+.logButton{
+padding-bottom: 50px;
+}
 .reg2{
-	position: center;
+	text-align: center;
+}
+.addForm {
+text-align:center;
+}
+#nav li{
+display: inline;
+padding-left: 50px;
+}
+table th,
+table td{
+	padding: 10px 30px;
 }
 

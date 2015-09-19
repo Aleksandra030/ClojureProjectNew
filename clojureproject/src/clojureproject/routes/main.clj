@@ -44,12 +44,11 @@
       [:td (make-delete-button _id)]])])
 
 (defn main []
-  (layout/common [:h1 "MAIN PAGE!"]
+  (layout/common [:h1 "Item list"]
           (list 
-            [:h2 "Item list"]
             [:br][:br]
             (show-list))
-          [:p (session/get :message)]))
+          [:p  (session/get :message)]))
 
 (defn plan-to-learn
   [id]
@@ -65,7 +64,7 @@
                                            (=  userType  "high manager") (* (Integer/valueOf coefficient) 0.5)
                                            (=  userType  "low programer") (* (Integer/valueOf coefficient) 1.5)
                                            :else (* (Integer/valueOf coefficient) 2))]
-                                    (session/put! :message hours)
+                                    (session/put! :message (concat "You need to study " (str hours) " hours per week for " (:item item)))
                                      (response/redirect "/main")
                                    ; (println hours)
                                    )(let [ hours1 
@@ -74,7 +73,7 @@
                                            (=  userType  "high manager") (* (Integer/valueOf coefficient) 1.5)
                                            (=  userType  "low programer") (* (Integer/valueOf coefficient) 1)
                                            :else (* (Integer/valueOf coefficient) 1))]
-                                           (session/put! :message hours1)
+                                           (session/put! :message (concat "You need to study "(str hours1) " hours per week for " (:item item)))
                                            (response/redirect "/main")
                                          ; (println hours1)
                                       )))

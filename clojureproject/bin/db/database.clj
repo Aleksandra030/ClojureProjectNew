@@ -7,7 +7,7 @@
 
 ;; ----- Database connection -----
 (def conn 
-  (make-connection "baseNew"))
+  (make-connection "baseClojure"))
 
 (set-connection! conn)
 
@@ -45,6 +45,16 @@
                    :username username
                    :password password
                    :type ""}))
+
+(defn insert-admin
+  [name lastName mail username password]
+  (println "dodao")
+  (insert-entity :admin 
+                  {:name name
+                   :lastName lastName
+                   :mail mail
+                   :username username
+                   :password password}))
 
 (defn insert-item
     [item coefficient type]

@@ -9,9 +9,7 @@
    [:div.header_inner
     [:ul#nav 
       [:div.top_header
-     [:a {:href "/"} "Logout"]]]
-    ]
-   ])
+     [:a {:href "/"} "Logout"]]]]])
 
 
 (defn admin-menu
@@ -20,11 +18,9 @@
    [:div.header_inner
     [:ul#nav 
      [:li 
-      [:a {:href "/add"} "Add"]]]
-    [:div.top_header
-     [:a {:href "/"} "Logout"]]
-    ]
-   ])
+      [:a {:href "/add"} "Add"]]
+      [:li 
+      [:a {:href "/"} "Logout"]]]]])
 
 
 (defn common [& content]

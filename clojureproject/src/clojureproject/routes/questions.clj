@@ -9,7 +9,7 @@
 (defn test []
   (layout/common [:h1 "Questions!"]
                 (form-to [:post "/getAnswers"]
-                         [:div.reg
+                         [:div.reg2
                           "I tend to spend a lot of time in front of a computer."
                          [:div
                            (drop-down :answer1 [:1 :2 :3 :4])]
@@ -45,7 +45,7 @@
         (update-type-on-register register-type)
         (session/put! :user register-user)
         (session/remove! :admin)))
-    (response/redirect "/main")))
+        (response/redirect "/main")))
 
 (defroutes question-routes
   (GET "/test" [] (test))

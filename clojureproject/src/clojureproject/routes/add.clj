@@ -13,10 +13,13 @@
                       [:div.addForm 
                           [:div 
                            (label {:class "addlabel"} :item "Item: ")  (text-field :item )]
+                          [:br]
                           [:div
                            (label {:class "addlabel"} :coefficient "Coefficient: ") (text-field :coefficient)]
+                          [:br]
                           [:div
                            (label {:class "addlabel"} :type "Type: ") (drop-down :type [:programming :management])]
+                          [:br]
                          [:div
                            (submit-button "Save item")]]
                       )
